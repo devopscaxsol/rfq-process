@@ -3,52 +3,167 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RFQ Handling Process (Technical Team View)</title>
+<title>CAXSOL RFQ Handling Process</title>
 <style>
   body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 20px;
+    background: #e4e5e6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 24px 40px 16px 40px;
+    border-bottom: 4px solid #455561;
+  }
+  .logo {
+    height: 56px;
+    margin-right: 30px;
+  }
+  .title-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: #455561;
+    letter-spacing: 1px;
+  }
+  main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 18px 50px 18px;
+    background: #fff;
+    box-shadow: 0 4px 16px #949ca321;
+    border-radius: 12px;
+    margin-top: 32px;
   }
   h2, h3 {
-    color: #2c3e50;
+    color: #455561;
+    margin-top: 1.3em;
+  }
+  /* Phase and team highlighting using company colors */
+  .phase-tech {
+    color: #455561;
+    border-left: 6px solid #949ca3;
+    background: #e4e5e6;
+    padding-left: 12px;
+    border-radius: 4px;
+  }
+  .phase-pmo {
+    color: #b8aca5;
+    border-left: 6px solid #b8aca5;
+    background: #f4f1ee;
+    padding-left: 12px;
+    border-radius: 4px;
+  }
+  .phase-sales {
+    color: #d71946;
+    border-left: 6px solid #d71946;
+    background: #fbe7eb;
+    padding-left: 12px;
+    border-radius: 4px;
+  }
+  .phase-finance {
+    color: #949ca3;
+    border-left: 6px solid #949ca3;
+    background: #f0f3f6;
+    padding-left: 12px;
+    border-radius: 4px;
+  }
+  .emoji {
+    font-size: 1.2em;
+    margin-right: 8px;
+  }
+  hr {
+    border: none;
+    border-top: 2px solid #d8cfc9;
+    margin: 28px 0;
   }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
+    background: #fafbfc;
+    box-shadow: 0 2px 6px #d8cfc961;
+    border-radius: 6px;
+    overflow: hidden;
   }
   th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 1px solid #e4e5e6;
+    padding: 12px 14px;
     vertical-align: top;
+    font-size: 1.03em;
   }
   th {
-    background-color: #f4f6f7;
-    text-align: left;
+    background-color: #e4e5e6;
+    color: #455561;
+    font-weight: 600;
   }
   ul {
-    margin: 5px 0 10px 20px;
+    margin: 6px 0 10px 22px;
   }
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 30px 0;
+  .responsible {
+    font-weight: 700;
+    border-bottom: 2px dotted #d71946;
+    color: #d71946;
   }
-  .emoji {
-    font-size: 1.2em;
-    margin-right: 5px;
+  /* Roles & Responsibilities Cards using EDAG colors */
+  #roles-resp {
+    margin-top: 44px;
+    background: #e4e5e6;
+    border-radius: 10px;
+    padding: 20px 0 34px 0;
+    box-shadow: 0 3px 10px #c7c7c771;
+  }
+  #roles-resp h3 {
+    text-align: center;
+    color: #455561;
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+  }
+  .roles-cards {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .role-card {
+    display: inline-block;
+    width: 185px;
+    margin: 10px 12px;
+    padding: 15px 7px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1em;
+    box-shadow: 0 1px 8px #949ca335;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+  .tech-team { background-color: #455561; }
+  .pmo-team { background-color: #b8aca5; }
+  .sales-team { background-color: #d71946; }
+  .finance-team { background-color: #949ca3; }
+  .bd-team { background-color: #e4e5e6; color: #455561; border: 2px solid #949ca3; }
+  @media (max-width: 650px) {
+    .role-card { width: 98%; margin: 8px 0; }
+    .header { flex-direction: column; gap: 6px; align-items: flex-start; }
+    .logo { height: 40px; }
   }
 </style>
 </head>
 <body>
 
-<h2><span class="emoji">📄</span>RFQ Handling Process (Technical Team View)</h2>
+<div class="header">
+  <img src="caxsol-new.png" alt="CAXSOL logo" class="logo" />
+  <span class="title-text">RFQ Handling Process (Technical Team View)</span>
+</div>
+
+<main>
 <p>A structured and repeatable process to manage client RFQs within the company:</p>
 
 <hr />
 
-<h3><span class="emoji">🧭</span> Phase 1: Intake and Internal Review</h3>
+<h3 class="phase-sales"><span class="emoji">🧭</span>Phase 1: Intake and Internal Review <span class="responsible">(Responsible: Sales Team)</span></h3>
 <table>
   <thead>
     <tr>
@@ -89,7 +204,7 @@
 
 <hr />
 
-<h3><span class="emoji">🔍</span> Phase 2: Technical Analysis</h3>
+<h3 class="phase-tech"><span class="emoji">🔍</span>Phase 2: Technical Analysis <span class="responsible">(Responsible: Tech Team)</span></h3>
 <table>
   <thead>
     <tr>
@@ -103,14 +218,14 @@
       <td>
         Technical team extracts and validates:
         <ul>
-          <li>Functional &amp; non-functional requirements</li>
+          <li>Functional & non-functional requirements</li>
           <li>Compliance and integration needs</li>
           <li>Expected deliverables (documents, code, designs)</li>
         </ul>
       </td>
     </tr>
     <tr>
-      <td><strong>5. Gap Analysis &amp; Risk Assessment</strong></td>
+      <td><strong>5. Gap Analysis & Risk Assessment</strong></td>
       <td>
         Identify:
         <ul>
@@ -129,7 +244,7 @@
 
 <hr />
 
-<h3><span class="emoji">💡</span> Phase 3: Solutioning and Estimation</h3>
+<h3 class="phase-tech"><span class="emoji">💡</span>Phase 3: Solutioning and Estimation <span class="responsible">(Responsible: Tech Team)</span></h3>
 <table>
   <thead>
     <tr>
@@ -179,7 +294,7 @@
 
 <hr />
 
-<h3><span class="emoji">📑</span> Phase 4: Documentation and Review</h3>
+<h3 class="phase-pmo"><span class="emoji">📑</span>Phase 4: Documentation and Review <span class="responsible">(Responsible: PMO Team)</span></h3>
 <table>
   <thead>
     <tr>
@@ -200,7 +315,7 @@
       </td>
     </tr>
     <tr>
-      <td><strong>12. Internal Review &amp; Approval</strong></td>
+      <td><strong>12. Internal Review & Approval</strong></td>
       <td>Review and approval by Technical Architect, Delivery Head/CTO, and Commercial Owner.</td>
     </tr>
     <tr>
@@ -212,7 +327,7 @@
 
 <hr />
 
-<h3><span class="emoji">✅</span> Phase 5: Post-Submission Activities</h3>
+<h3 class="phase-pmo"><span class="emoji">✅</span>Phase 5: Post-Submission Activities <span class="responsible">(Responsible: PMO Team)</span></h3>
 <table>
   <thead>
     <tr>
@@ -234,42 +349,17 @@
 
 <hr />
 
-<h3><span class="emoji">🧩</span> Roles &amp; Responsibilities</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Responsibilities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Technical Architect</strong></td>
-      <td>Lead technical review, define architecture, own effort estimation.</td>
-    </tr>
-    <tr>
-      <td><strong>Solution Engineer (Software & CloudOps)</strong></td>
-      <td>Translate requirements into feasible technical solutions.</td>
-    </tr>
-    <tr>
-      <td><strong>Tech Leads (Dev, Infra, QA)</strong></td>
-      <td>Provide effort estimates and risk analysis.</td>
-    </tr>
-    <tr>
-      <td><strong>Sales / BD</strong></td>
-      <td>Coordinate RFQ intake and client communications.</td>
-    </tr>
-    <tr>
-      <td><strong>PMO / Delivery Manager</strong></td>
-      <td>Consolidate proposals and resource planning.</td>
-    </tr>
-    <tr>
-      <td><strong>Finance / Commercial</strong></td>
-      <td>Validate pricing, terms, and apply rate cards.</td>
-    </tr>
-  </tbody>
-</table>
+<section id="roles-resp">
+  <h3><span class="emoji">🧩</span>Who is Responsible for What? (Team Roles & Color Codes)</h3>
+  <div class="roles-cards">
+    <div class="role-card tech-team" title="Technical Team (Architect, Engineers, Tech Leads)">Tech Team</div>
+    <div class="role-card pmo-team" title="Project Management Office and Delivery Managers">PMO Team</div>
+    <div class="role-card sales-team" title="Sales and BD">Sales Team</div>
+    <div class="role-card finance-team" title="Finance and Commercial">Finance Team</div>
+    <div class="role-card bd-team" title="Business Development">BD Team</div>
+  </div>
+</section>
+</main>
 
 </body>
 </html>
-
