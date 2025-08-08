@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RFQ Handling Process (Technical Team View)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+  }
+  h2, h3 {
+    color: #2c3e50;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+  }
+  th {
+    background-color: #f4f6f7;
+    text-align: left;
+  }
+  ul {
+    margin: 5px 0 10px 20px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 30px 0;
+  }
+  .emoji {
+    font-size: 1.2em;
+    margin-right: 5px;
+  }
+</style>
+</head>
+<body>
+
+<h2><span class="emoji">📄</span>RFQ Handling Process (Technical Team View)</h2>
+<p>A structured and repeatable process to manage client RFQs within the company:</p>
+
+<hr />
+
+<h3><span class="emoji">🧭</span> Phase 1: Intake and Internal Review</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. RFQ Registration</strong></td>
+      <td>Sales, BD, or Procurement team logs the RFQ into a centralized tracking system and assigns a unique RFQ ID.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Internal Kick-off Meeting</strong></td>
+      <td>
+        Meeting involving Sales/BD, Technical Architect, Project Manager, and stakeholders to:
+        <ul>
+          <li>Understand scope</li>
+          <li>Identify deliverables</li>
+          <li>Define timeline</li>
+          <li>Assign team leads</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>3. Scope Classification</strong></td>
+      <td>
+        Technical Architect categorizes the RFQ by:
+        <ul>
+          <li>Type: Software / Infrastructure / Integration / Support</li>
+          <li>Complexity: Small, Medium, Complex</li>
+          <li>Domain or Vertical</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span class="emoji">🔍</span> Phase 2: Technical Analysis</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>4. Requirements Breakdown</strong></td>
+      <td>
+        Technical team extracts and validates:
+        <ul>
+          <li>Functional &amp; non-functional requirements</li>
+          <li>Compliance and integration needs</li>
+          <li>Expected deliverables (documents, code, designs)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>5. Gap Analysis &amp; Risk Assessment</strong></td>
+      <td>
+        Identify:
+        <ul>
+          <li>Requirement gaps</li>
+          <li>Risks related to technology, timeline, dependencies</li>
+          <li>Ambiguities needing clarification</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>6. Clarifications to Client</strong></td>
+      <td>Technical team sends queries to BD or directly to client to resolve ambiguities.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span class="emoji">💡</span> Phase 3: Solutioning and Estimation</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>7. Solution Proposal</strong></td>
+      <td>
+        Architect prepares a high-level solution including:
+        <ul>
+          <li>Architecture diagram</li>
+          <li>Proposed tech stack</li>
+          <li>Integration strategy</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>8. Effort Estimation</strong></td>
+      <td>
+        Leads from Development, Infrastructure, Security, QA provide:
+        <ul>
+          <li>Effort estimation (hours or person-days)</li>
+          <li>Resource planning</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>9. Costing</strong></td>
+      <td>Combine effort estimates with financial rate cards (via PM/Finance) to determine pricing.</td>
+    </tr>
+    <tr>
+      <td><strong>10. SLA/Timeline Commitments</strong></td>
+      <td>
+        Define:
+        <ul>
+          <li>Project timeline with milestones</li>
+          <li>Service Level Agreements (SLAs) or performance targets</li>
+          <li>Client-side dependencies</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span class="emoji">📑</span> Phase 4: Documentation and Review</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>11. Prepare Technical Sections</strong></td>
+      <td>
+        Draft technical proposal sections including:
+        <ul>
+          <li>Technical approach</li>
+          <li>Compliance checklists</li>
+          <li>Assumptions and exclusions</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>12. Internal Review &amp; Approval</strong></td>
+      <td>Review and approval by Technical Architect, Delivery Head/CTO, and Commercial Owner.</td>
+    </tr>
+    <tr>
+      <td><strong>13. Final Submission</strong></td>
+      <td>Merge technical and commercial proposals and submit via BD/Procurement team.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span class="emoji">✅</span> Phase 5: Post-Submission Activities</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>14. Response to Clarifications</strong></td>
+      <td>Technical Points of Contact support follow-up clarifications, demos, or presentations.</td>
+    </tr>
+    <tr>
+      <td><strong>15. Handover to Delivery</strong></td>
+      <td>If RFQ is awarded, hand over technical documentation and commitments to Delivery/PMO.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3><span class="emoji">🧩</span> Roles &amp; Responsibilities</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Responsibilities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Technical Architect</strong></td>
+      <td>Lead technical review, define architecture, own effort estimation.</td>
+    </tr>
+    <tr>
+      <td><strong>Solution Engineer</strong></td>
+      <td>Translate requirements into feasible technical solutions.</td>
+    </tr>
+    <tr>
+      <td><strong>Tech Leads (Dev, Infra, QA)</strong></td>
+      <td>Provide effort estimates and risk analysis.</td>
+    </tr>
+    <tr>
+      <td><strong>Sales / BD</strong></td>
+      <td>Coordinate RFQ intake and client communications.</td>
+    </tr>
+    <tr>
+      <td><strong>PMO / Delivery Manager</strong></td>
+      <td>Consolidate proposals and resource planning.</td>
+    </tr>
+    <tr>
+      <td><strong>Finance / Commercial</strong></td>
+      <td>Validate pricing, terms, and apply rate cards.</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
