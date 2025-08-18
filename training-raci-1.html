@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Learning Program – RACI, Reminders & Announcements</title>
+<style>
+  :root{
+    /* EDAG brand */
+    --edag-dark:#455561;
+    --edag-mid:#949CA3;
+    --edag-light:#E4E5E6;
+    --edag-red:#D71946;
+
+    /* RACI chips mapped to EDAG tones */
+    --r-bg: var(--edag-dark);
+    --a-bg: var(--edag-red);
+    --c-bg: var(--edag-mid);
+    --i-bg: var(--edag-light);
+    --i-fg: var(--edag-dark);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:#2b3136;
+    background:var(--edag-light);
+    line-height:1.45;
+  }
+
+  /* layout */
+  .container{max-width:1200px;margin:0 auto;padding:24px}
+  header{
+    display:flex;align-items:center;gap:16px;
+    padding:16px 20px;margin-bottom:18px;
+    background:#fff;border:1px solid var(--edag-mid);
+    border-radius:12px;
+  }
+  header img{height:48px;width:auto}
+  header h1{margin:0;font-size:1.4rem;color:var(--edag-dark)}
+  header small{display:block;color:var(--edag-mid)}
+
+  .section{
+    background:#fff;border:1px solid #d7d9dd;border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,.04);
+    padding:22px;margin:18px 0;
+  }
+  .section h2{
+    margin:0 0 14px;color:var(--edag-dark);letter-spacing:.2px
+  }
+
+  /* RACI table */
+  .raci-wrap{overflow:auto;border-radius:10px;border:1px solid var(--edag-mid)}
+  table{width:100%;border-collapse:collapse;background:#fff}
+  thead th{
+    position:sticky;top:0;z-index:1;
+    background:var(--edag-dark);color:#fff;
+    text-align:left;font-weight:600;padding:10px 12px;font-size:.95rem;
+    border-bottom:2px solid #2e3941;
+  }
+  tbody td{padding:10px 12px;border-top:1px solid #edf0f2;vertical-align:middle}
+  tbody tr:nth-child(even){background:#fafbfc}
+  .col-center{text-align:center}
+  .chip{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:26px;height:26px;padding:0 8px;border-radius:999px;
+    font-weight:700;font-size:.85rem;letter-spacing:.5px;
+    box-shadow:0 1px 0 rgba(0,0,0,.08)
+  }
+  .r{background:var(--r-bg);color:#fff}
+  .a{background:var(--a-bg);color:#fff}
+  .c{background:var(--c-bg);color:#fff}
+  .i{background:var(--i-bg);color:var(--i-fg);border:1px solid var(--edag-mid)}
+
+  .badge{
+    display:inline-block;font-size:.8rem;padding:.18rem .55rem;border-radius:999px;
+    border:1px solid var(--edag-mid);color:#344047;background:#fff
+  }
+  .badge.yes{background:var(--edag-red);border-color:var(--edag-red);color:#fff}
+  .badge.no{background:#fff}
+
+  /* tiny header icons */
+  .th{
+    display:flex;align-items:center;gap:6px;
+  }
+  .th svg{width:16px;height:16px;fill:#fff;opacity:.9}
+
+  /* Reminder + Announcement */
+  .grid-2{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:22px
+  }
+  @media (max-width:900px){
+    .grid-2{grid-template-columns:1fr}
+  }
+  .bullets ul{margin:6px 0 0 0;padding-left:20px}
+  .bullets li{margin:.45rem 0}
+  .bullets li::marker{color:var(--edag-dark)}
+
+  .announce .row{
+    display:flex;align-items:center;gap:16px;justify-content:space-between;
+    padding:12px 0;border-top:1px solid #eceff1
+  }
+  .announce .row:first-child{border-top:0}
+  .announce strong{color:#2b3136}
+  .channel{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:.85rem;padding:.25rem .6rem;border-radius:999px;
+    background:#fff;border:1px solid var(--edag-mid);color:#2b3136
+  }
+  .channel svg{width:14px;height:14px;fill:var(--edag-dark)}
+
+  /* RACI legend (horizontal labels) */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:6px
+  }
+  .legend .item{display:flex;align-items:center;gap:8px}
+  .swatch{width:18px;height:18px;border-radius:3px;border:1px solid #bfc5cc}
+  .swatch.r{background:var(--r-bg);border-color:var(--r-bg)}
+  .swatch.a{background:var(--a-bg);border-color:var(--a-bg)}
+  .swatch.c{background:var(--c-bg);border-color:var(--c-bg)}
+  .swatch.i{background:var(--i-bg);border-color:var(--edag-mid)}
+  .muted{color:#5d6670;font-size:.92rem}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="caxsol-new.png" alt="Company logo" />
+      <div>
+        <h1>Learning Program</h1>
+        <small>RACI Matrix, Reminder Plan and Announcement Channels</small>
+      </div>
+    </header>
+
+    <!-- RACI MATRIX -->
+    <section class="section">
+      <h2>RACI Matrix</h2>
+      <div class="raci-wrap">
+        <table aria-label="RACI matrix for learning activities">
+          <thead>
+            <tr>
+              <th><div class="th">
+                <!-- tasks icon -->
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11v2H9V6zm0 5h11v2H9v-2zm0 5h11v2H9v-2zM4 7.5l1.5 1.5L8 6.5l-1-1-1.5 1.5L4.5 5 3.5 6l.5.5zM4 12.5l1.5 1.5L8 11.5l-1-1-1.5 1.5L4.5 10 3.5 11l.5.5zM4 17.5l1.5 1.5L8 16.5l-1-1-1.5 1.5L4.5 15 3.5 16l.5.5z"/></svg>
+                Task / Activity</div></th>
+              <th class="col-center"><div class="th">
+                <!-- learner cap -->
+                <svg viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 8-4.1V14h2V8L12 3zm-6 9v3c0 2.2 3.6 4 6 4s6-1.8 6-4v-3l-6 3-6-3z"/></svg>
+                Learner</div></th>
+              <th class="col-center"><div class="th">
+                <!-- briefcase -->
+                <svg viewBox="0 0 24 24"><path d="M10 4h4a2 2 0 0 1 2 2v2h4v12H4V8h4V6a2 2 0 0 1 2-2zm0 4h4V6h-4v2z"/></svg>
+                Team Lead / Manager</div></th>
+              <th class="col-center"><div class="th">
+                <!-- users -->
+                <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-3.999-4A4 4 0 0 0 16 11zM8 12a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm8 2c-3.314 0-6 1.79-6 4v2h12v-2c0-2.21-2.686-4-6-4zM2 18v2h6v-2c0-1.178.528-2.233 1.406-3.05A9.908 9.908 0 0 0 8 15c-2.761 0-6 1.343-6 3z"/></svg>
+                L&amp;D / HR</div></th>
+              <th class="col-center"><div class="th">
+                <!-- clipboard -->
+                <svg viewBox="0 0 24 24"><path d="M9 3h6a2 2 0 0 1 2 2h2v16H5V5h2a2 2 0 0 1 2-2zm0 2v2h6V5H9z"/></svg>
+                Project Admin / PM</div></th>
+              <th class="col-center"><div class="th">
+                <!-- bell -->
+                <svg viewBox="0 0 24 24"><path d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2zm6-6V11a6 6 0 1 0-12 0v5L4 18v2h16v-2l-2-2z"/></svg>
+                Reminder</div></th>
+              <th><div class="th">
+                <!-- chat -->
+                <svg viewBox="0 0 24 24"><path d="M2 4h20v12H6l-4 4V4z"/></svg>
+                Communication Channel</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Define learning goals / roadmap</td>
+              <td class="col-center"><span class="chip r" title="Responsible">R</span></td>
+              <td class="col-center"><span class="chip a" title="Accountable">A</span></td>
+              <td class="col-center"><span class="chip c" title="Consulted">C</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge no">No</span></td>
+              <td>Internal docs / Teams</td>
+            </tr>
+            <tr>
+              <td>Assign learning topics &amp; deadlines</td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge yes">Yes</span></td>
+              <td>Teams / Email</td>
+            </tr>
+            <tr>
+              <td>Track progress of learning</td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge yes">Yes</span></td>
+              <td>Weekly Tracker Update</td>
+            </tr>
+            <tr>
+              <td>Provide learning resources</td>
+              <td class="col-center"><span class="chip c">C</span></td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge no">No</span></td>
+              <td>LMS / Email / Teams</td>
+            </tr>
+            <tr>
+              <td>Set up learning reminders</td>
+              <td class="col-center"></td>
+              <td class="col-center"></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"><span class="badge yes">Yes</span></td>
+              <td>Teams bot / Outlook</td>
+            </tr>
+            <tr>
+              <td>Conduct regular review / check-ins</td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge yes">Yes</span></td>
+              <td>Calendar invites / Teams call</td>
+            </tr>
+            <tr>
+              <td>Update team on progress (monthly)</td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge yes">Yes</span></td>
+              <td>Email / Teams channel</td>
+            </tr>
+            <tr>
+              <td>Celebrate milestones</td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"><span class="chip c">C</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge no">No</span></td>
+              <td>Teams / Announcement</td>
+            </tr>
+            <tr>
+              <td>Feedback loop for content or pacing</td>
+              <td class="col-center"><span class="chip r">R</span></td>
+              <td class="col-center"><span class="chip c">C</span></td>
+              <td class="col-center"><span class="chip a">A</span></td>
+              <td class="col-center"></td>
+              <td class="col-center"><span class="badge no">No</span></td>
+              <td>Form / Teams chat</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- legend -->
+      <div class="legend" aria-label="RACI legend">
+        <div class="item"><span class="swatch r"></span> <span class="muted">Responsible</span></div>
+        <div class="item"><span class="swatch a"></span> <span class="muted">Accountable</span></div>
+        <div class="item"><span class="swatch c"></span> <span class="muted">Consulted</span></div>
+        <div class="item"><span class="swatch i"></span> <span class="muted">Informed</span></div>
+      </div>
+    </section>
+
+    <!-- REMINDERS + ANNOUNCEMENTS -->
+    <section class="section">
+      <h2>Reminder Plan & Announcement Channel</h2>
+      <div class="grid-2">
+        <div class="bullets">
+          <ul>
+            <li>Weekly task reminders for learners</li>
+            <li>Bi-weekly check-ins with manager or mentor</li>
+            <li>Monthly progress reporting to team</li>
+            <li>Quarterly milestone celebrations</li>
+            <li>Pre-learning session announcements</li>
+            <li>Post-learning feedback form reminders</li>
+          </ul>
+        </div>
+        <div class="announce">
+          <div class="row">
+            <strong>Learning roadmap launch</strong>
+            <span class="channel" title="Email">
+              <!-- envelope -->
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12l6-4h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+              Email
+            </span>
+          </div>
+          <div class="row">
+            <strong>Weekly learning tip / motivation</strong>
+            <span class="channel" title="Microsoft Teams">
+              <!-- chat bubble -->
+              <svg viewBox="0 0 24 24"><path d="M2 4h20v12H6l-4 4V4z"/></svg>
+              Teams
+            </span>
+          </div>
+          <div class="row">
+            <strong>Check-in or review meeting invite</strong>
+            <span class="channel" title="Outlook Calendar">
+              <!-- calendar -->
+              <svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H2V4h3V2h2v2zM4 8h16v12H4V8z"/></svg>
+              Outlook
+            </span>
+          </div>
+          <div class="row">
+            <strong>Progress celebration / leaderboard</strong>
+            <span class="channel" title="Teams or Email">
+              <svg viewBox="0 0 24 24"><path d="M2 4h20v12H6l-4 4V4z"/></svg>
+              Teams
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
